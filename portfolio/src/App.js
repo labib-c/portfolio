@@ -1,8 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Portfolio from './components/Portfolio';
 function App() {
+  const portfolioItems = [
+    { imgSrc: require("./assets/img/portfolio/cabin.png")},
+    { imgSrc: require("./assets/img/portfolio/cake.png")}, 
+    { imgSrc: require("./assets/img/portfolio/circus.png")}, 
+    { imgSrc: require("./assets/img/portfolio/game.png")}, 
+    { imgSrc: require("./assets/img/portfolio/safe.png")}, 
+    { imgSrc: require("./assets/img/portfolio/submarine.png")}
+  ]
+
   return (
     <div className="App">
         <nav className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -32,73 +41,7 @@ function App() {
             </div>
         </header>
         {/* <!-- Portfolio Section--> */}
-        <section className="page-section portfolio" id="portfolio">
-            <div className="container">
-                <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
-                <div className="divider-custom">
-                    <div className="divider-custom-line"></div>
-                    <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
-                    <div className="divider-custom-line"></div>
-                </div>
-                {/* <!-- Portfolio Grid Items--> */}
-                <div className="row">
-                    {/* <!-- Portfolio Item 1--> */}
-                    <div className="col-md-6 col-lg-4 mb-5">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/cabin.png")} alt="" />
-                        </div>
-                    </div>
-                    {/* <!-- Portfolio Item 2--> */}
-                    <div className="col-md-6 col-lg-4 mb-5">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/cake.png")} alt="" />
-                        </div>
-                    </div>
-                    {/* <!-- Portfolio Item 3--> */}
-                    <div className="col-md-6 col-lg-4 mb-5">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/circus.png")} alt="" />
-                        </div>
-                    </div>
-                    {/* <!-- Portfolio Item 4--> */}
-                    <div className="col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/game.png")} alt="" />
-                        </div>
-                    </div>
-                    {/* <!-- Portfolio Item 5--> */}
-                    <div className="col-md-6 col-lg-4 mb-5 mb-md-0">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/safe.png")} alt="" />
-                        </div>
-                    </div>
-                    {/* <!-- Portfolio Item 6--> */}
-                    <div className="col-md-6 col-lg-4">
-                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
-                            <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div className="portfolio-item-caption-content text-center text-white"><i className="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img className="img-fluid" src={require("./assets/img/portfolio/submarine.png")} alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <Portfolio portfolioItems={portfolioItems}></Portfolio>
         {/* <!-- About Section--> */}
         <section className="page-section bg-primary text-white mb-0" id="about">
             <div className="container">

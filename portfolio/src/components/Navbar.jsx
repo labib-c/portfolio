@@ -5,7 +5,7 @@ class Navbar extends React.Component {
     scrollToTop = () => {
         scroll.scrollToTop();
       };
-
+    
     render(){
         return (
             <nav className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">

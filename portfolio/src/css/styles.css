@@ -10033,6 +10033,15 @@ h3 {
 #mainNav .navbar-brand {
   color: #fff;
 }
+
+#mainNav a.navbar-brand:hover {
+  cursor: pointer;
+}
+
+#mainNav li.nav-item:hover {
+  cursor: pointer;
+}
+
 #mainNav .navbar-nav {
   margin-top: 1rem;
 }

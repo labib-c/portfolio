@@ -89,7 +89,7 @@ class App extends React.Component {
           <Footer></Footer>
           {/* <!-- Copyright Section--> */}
           <section className="copyright py-4 text-center text-white">
-              <div className="container"><small>Copyright © Your Website 2020</small></div>
+              <div className="container"><small>Copyright © 2020</small></div>
           </section>
           {/* <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)--> */}
           <div className="scroll-to-top d-lg-none position-fixed">

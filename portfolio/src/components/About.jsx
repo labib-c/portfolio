@@ -14,12 +14,14 @@ export default() => {
                 </div>
                 {/* <!-- About Section Content--> */}
                 <div className="row">
-                    <div className="col-lg-4 ml-auto"><p className="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div className="col-lg-4 mr-auto"><p className="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+                    <div className="col ml-auto"><p className="lead">Hello! My name is Labib Chowdhury and I'm a 4th year Computer Science and Statistics student at the University of Toronto. 
+                    The goal of this site is simple: I wanted to learn React and also have a place for me to write about things I'm interested in.
+                    You can find my resume below, please reach out if you want to discuss anything!
+                    </p></div>
                 </div>
                 {/* <!-- About Section Button--> */}
                 <div className="text-center mt-4">
-                    <a className="btn btn-xl btn-outline-dark" href="https://startbootstrap.com/themes/freelancer/"><i className="fas fa-download mr-2"></i>Free Download!</a>
+                    <a className="btn btn-xl btn-outline-dark" href={require("./../assets/resume.pdf")}><i className="fas fa-download mr-2"></i>CV/Resume</a>
                 </div>
             </div>
         </section>

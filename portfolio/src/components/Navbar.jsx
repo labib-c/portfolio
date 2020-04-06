@@ -2,13 +2,40 @@ import React from 'react';
 import { Link, animateScroll as scroll } from "react-scroll";
 
 class Navbar extends React.Component {
+    constructor(props) {
+
+        super(props);
+    
+        this.state = {
+          isTop: true
+        };
+        this.onScroll = this.onScroll.bind(this);
+    }
+    
+    componentDidMount() {
+    document.addEventListener('scroll', () => {
+        const isTop = window.scrollY < 100;
+        if (isTop !== this.state.isTop) {
+            this.onScroll(isTop);
+        }
+    });
+    }
+    
+    onScroll(isTop) {
+    this.setState({ isTop });
+    }
+
     scrollToTop = () => {
         scroll.scrollToTop();
-      };
-    
+    };
+
     render(){
+        let navbarClass = 'navbar navbar-expand-lg bg-secondary text-uppercase fixed-top ';
+        if (!this.state.isTop) {
+            navbarClass += 'navbar-shrink';
+        }
         return (
-            <nav className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <nav className={navbarClass} id="mainNav">
                 <div className="container">
                     <a className="navbar-brand js-scroll-trigger" onClick={this.scrollToTop}>Start Bootstrap</a><button className="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i className="fas fa-bars"></i></button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
@@ -22,8 +49,8 @@ class Navbar extends React.Component {
                                             to={item}
                                             spy={true}
                                             smooth={true}
-                                            offset={-70}
-                                            duration={500}
+                                            offset={0}
+                                            duration={350}
                                         >
                                         {item}
                                         </Link>

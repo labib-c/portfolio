@@ -10134,7 +10134,7 @@ h3 {
   left: 0;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  background-color: rgba(107, 178, 209, 1);
+  background-color: rgba(255, 255, 255, 0.767);
 }
 .portfolio .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
@@ -10208,6 +10208,10 @@ h3 {
 
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #e9ecef;
+}
+
+.fa-plus {
+  color: #2c3e50;
 }
 
 .footer {

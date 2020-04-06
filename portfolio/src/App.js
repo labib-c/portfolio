@@ -28,15 +28,15 @@ class App extends React.Component {
       { modalLabel: "submarine",
         imgSrc: require("./assets/img/portfolio/submarine.png")}
     ]
-    const navbarItems = [ "portfolio", "about", "contact"]
+    const navbarItems = [ "about", "portfolio", "contact"]
     return (
       <div className="App">
           <Navbar navbarItems={navbarItems}></Navbar>
           <Header></Header>
-          {/* <!-- Portfolio Section--> */}
-          <Portfolio portfolioItems={portfolioItems}></Portfolio>
           {/* <!-- About Section--> */}
           <About></About>
+          {/* <!-- Portfolio Section--> */}
+          <Portfolio portfolioItems={portfolioItems}></Portfolio>
           {/* <!-- Contact Section--> */}
           <section className="page-section" id="contact">
               <div className="container">

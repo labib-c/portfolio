@@ -13,7 +13,7 @@ export default() => {
                       <div className="divider-custom-line"></div>
                   </div>
                   
-                  <p className="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+                  <p className="masthead-subheading font-weight-light mb-0">Computer Science - Statistics</p>
               </div>
           </header>
     )

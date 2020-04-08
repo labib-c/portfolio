@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class ContactMe extends React.Component {
     constructor(props) {
@@ -8,16 +9,27 @@ class ContactMe extends React.Component {
         this.state = {
           name: '',
           email: '',
-          message: ''
+          message: '',
+          submitted: true
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ submitted: false, [e.target.name]: e.target.value })
     }
-    handleSubmit = () => {
-        alert(this.state.name+" "+this.state.message)
+    
+    async handleSubmit(e){
+        e.preventDefault()
+        const { name, email, message } = this.state
+        const form = {
+            name,
+            email,
+            message
+        }
+        window.location.reload();
+        await axios.post('/api/form', form)
     }
     render(){
         return (
@@ -56,7 +68,7 @@ class ContactMe extends React.Component {
                             </div>
                             <br />
                             <div id="success"></div>
-                            <div className="form-group"><button className="btn btn-primary btn-xl" id="sendMessageButton" onClick={this.handleSubmit} type="submit">Send</button></div>
+                            <div className="form-group"><button className="btn btn-primary btn-xl" id="sendMessageButton" onClick={this.handleSubmit} disabled={this.state.submitted} type="submit">Send</button></div>
                         </form>
                     </div>
                 </div>

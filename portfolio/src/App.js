@@ -11,23 +11,18 @@ import ContactMe from './components/ContactMe';
 class App extends React.Component {
   render(){
     const portfolioItems = [
-      { modalLabel: "cabin",
-        imgSrc: require("./assets/img/portfolio/cabin.png")},
-  
-      { modalLabel: "cake",
-        imgSrc: require("./assets/img/portfolio/cake.png")}, 
-  
-      { modalLabel: "circus",
-        imgSrc: require("./assets/img/portfolio/circus.png")},
-  
-      { modalLabel: "game",
-        imgSrc: require("./assets/img/portfolio/game.png")}, 
-  
-      { modalLabel: "safe",
-        imgSrc: require("./assets/img/portfolio/safe.png")}, 
-  
-      { modalLabel: "submarine",
-        imgSrc: require("./assets/img/portfolio/submarine.png")}
+      { modalLabel: "CourseHub",
+        imgSrc: require("./assets/img/portfolio/coursehub.png"),
+        projectLink: "https://coursehub.ca"
+      },
+      { modalLabel: "Intro to Machine Learning",
+        imgSrc: require("./assets/img/portfolio/machine-learning.png"),
+        projectLink: "https://github.com/labib-c/Intro-to-Machine-Learning"
+      }, 
+      { modalLabel: "Lossless Compression",
+        imgSrc: require("./assets/img/portfolio/compression.png"),
+        projectLink: "https://github.com/labib-c/lossless-compression"
+      }
     ]
     const navbarItems = [ "about", "portfolio", "contact"]
     return (

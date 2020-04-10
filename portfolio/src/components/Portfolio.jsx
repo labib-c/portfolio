@@ -12,15 +12,17 @@ export default( { portfolioItems } ) => {
                 </div>
                 <div className="row">
                     {   
-                        portfolioItems && portfolioItems.map(({modalLabel, imgSrc}, index) =>
+                        portfolioItems && portfolioItems.map(({modalLabel, imgSrc, projectLink}, index) =>
                         
-                        <div className="col-md-6 col-lg-4 mb-5">                            
-                            <div className="portfolio-item mx-auto" data-toggle="modal" data-target={"#"+`${modalLabel}`}>
+                        <div className="col-md-6 col-lg-4 mb-5"> 
+                            {/*  Add this below for modals: //data-target={"#"+`${modalLabel}`}*/}
+                            <div className="portfolio-item mx-auto" data-toggle="modal"> 
                                 <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                    <div className="portfolio-item-caption-content text-center"><i className="fas fa-plus fa-3x"></i></div>
+                                    <a href={projectLink}><div className="portfolio-item-caption-content text-center"><i className="fas fa-plus fa-3x"></i></div></a>
                                 </div>
                                 <img className="img-fluid" src={ imgSrc } alt="" />
                             </div>
+                            <h3 className="text-secondary portoflio-label">{modalLabel}</h3> 
                         </div>
                         )
                     }

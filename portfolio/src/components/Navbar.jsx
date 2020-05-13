@@ -57,6 +57,20 @@ class Navbar extends React.Component {
                                     </li>
                                 )
                             }
+                            <li className="nav-item mx-0 mx-lg-1">
+                                        <Link 
+                                            className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                            activeClass="active"
+                                            to={"https://medium.com/@labibc01"}
+                                            spy={true}
+                                            smooth={true}
+                                            offset={0}
+                                            duration={350}
+                                        >
+                                        blog
+                                        </Link>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>

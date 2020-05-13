@@ -62,6 +62,7 @@ class Navbar extends React.Component {
                                             className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                             activeClass="active"
                                             href={"https://medium.com/@labibc01"}
+                                            target="_blank"
                                             spy={true}
                                             smooth={true}
                                             offset={0}

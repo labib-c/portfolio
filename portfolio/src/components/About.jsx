@@ -14,8 +14,10 @@ export default() => {
                 </div>
                 {/* <!-- About Section Content--> */}
                 <div className="row">
-                    <div className="col ml-auto"><p className="lead">Hello! My name is Labib Chowdhury and I'm a 4th year Computer Science and Statistics student at the University of Toronto. 
-                    The goal of this site is simple: I wanted to learn React and also have a place for me to write about things I'm interested in.
+                    <div className="col ml-auto"><p className="lead">Hello! My name is Labib Chowdhury and I'm a Computer Science and Statistics graduate from the University of Toronto. 
+                    My technical interests lie in Machine Learning and it's applications on common issues, as well as Full Stack Web Development. Outside of tech, I am an avid Toronto based sports fan! 
+                    I am currently looking for new graduate and junior software engineering roles.
+                    <br></br>
                     You can find my resume below, please reach out if you want to discuss anything!
                     </p></div>
                 </div>

@@ -21,7 +21,6 @@ export default( {portfolioItem} ) => {
                                         <div className="divider-custom-line"></div>
                                     </div>
                                     <img className="img-fluid rounded mb-5" src={portfolioItem.imgSrc} alt="" />
-                                    <p className="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                     <button className="btn btn-primary" href="#" data-dismiss="modal"><i className="fas fa-times fa-fw"></i>Close Window</button>
                                 </div>
                             </div>

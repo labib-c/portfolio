@@ -2,6 +2,7 @@
     import "../app.css";
     import TwemojiConstruction from 'virtual:icons/twemoji/construction';
     import { onMount } from "svelte";
+    import { ResumePath, ThesisPath } from "$lib/Constants";
 
     let theme = "light"; // Default theme
     onMount(() => {
@@ -23,7 +24,13 @@
         <TwemojiConstruction />
         <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" on:click={toggleTheme}>
             Toggle Theme
-        </button>    
+        </button> 
+        <a href="{ResumePath}" download class="btn btn-primary">
+            Download Resume
+        </a>
+        <a href="{ThesisPath}" download class="btn btn-primary">
+            Download Thesis
+        </a>
     </div>
 </main>
 

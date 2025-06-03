@@ -1,5 +1,19 @@
 <script lang="ts">
+    import "../app.css";
     import TwemojiConstruction from 'virtual:icons/twemoji/construction';
+    import { onMount } from "svelte";
+
+    let theme = "light"; // Default theme
+    onMount(() => {
+        theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+    });
+
+    function toggleTheme() {
+        theme = theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+    }
 </script>
     
 <main>
@@ -7,6 +21,9 @@
         <TwemojiConstruction />
         <h1>Under Construction</h1>
         <TwemojiConstruction />
+        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" on:click={toggleTheme}>
+            Toggle Theme
+        </button>    
     </div>
 </main>
 

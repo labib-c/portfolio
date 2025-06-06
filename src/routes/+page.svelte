@@ -1,52 +1,35 @@
 <script lang="ts">
-    import "../app.css";
-    import TwemojiConstruction from 'virtual:icons/twemoji/construction';
+    import { ResumePath, ThesisPath } from '$lib/Constants';
+    import Contact from '$lib/Components/Contact.svelte';
+    import Projects from '$lib/Components/Projects.svelte';
+    import CurrentProjects from '$lib/Components/CurrentProject.svelte';
+    import BooksReading from '$lib/Components/BooksReading.svelte';
+    import ThemeToggle from '$lib/Components/ThemeToggle.svelte';
     import { onMount } from "svelte";
-    import { ResumePath, ThesisPath } from "$lib/Constants";
 
     let theme = "light"; // Default theme
     onMount(() => {
         theme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', theme);
     });
-
-    function toggleTheme() {
-        theme = theme === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-    }
 </script>
-    
-<main>
-    <div class="centered-content">
-        <TwemojiConstruction />
-        <h1>Under Construction</h1>
-        <TwemojiConstruction />
-        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" on:click={toggleTheme}>
-            Toggle Theme
-        </button> 
-        <a href="{ResumePath}" download class="btn btn-primary">
-            Download Resume
-        </a>
-        <a href="{ThesisPath}" download class="btn btn-primary">
-            Download Thesis
-        </a>
-    </div>
+
+<main class="p-8">
+    <section class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Labib Chowdhury</h1>
+        <p class="text-lg">Welcome to my personal portfolio!</p>
+        <ThemeToggle />
+    </section>
+    <Contact />
+    <Projects />
+    <CurrentProjects />
+    <BooksReading />
+
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Downloads</h2>
+        <ul class="list-disc pl-5">
+            <li><a href={ResumePath} download class="link link-primary">Resume</a></li>
+            <li><a href={ThesisPath} download class="link link-primary">Thesis</a></li>
+        </ul>
+    </section>
 </main>
-
-<style>
-    main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh; /* Makes the main element take up the full viewport height */
-        text-align: center;
-    }
-
-    .centered-content {
-        display: flex;
-        flex-direction: row; /* Places items in a row */
-        align-items: center; /* Vertically aligns items */
-        gap: 1rem; /* Adds spacing between the emojis and the text */
-    }
-</style>

@@ -20,9 +20,9 @@
 
 <div class={props.class}>
     <label class="swap swap-rotate">
-        <input class="theme-controller" on:click={toggleTheme} type="checkbox" />
-        <div class="swap-on icon"><RiMoonClearLine/></div>
-        <div class="swap-off icon"><RiSunLine/></div>
+        <input class="theme-controller" onclick={toggleTheme} type="checkbox" />
+        <div class="swap-on "><RiMoonClearLine/></div>
+        <div class="swap-off"><RiSunLine/></div>
     </label>
 </div>
 

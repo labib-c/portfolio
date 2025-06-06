@@ -21,7 +21,7 @@
 
 <div>
     <label class="swap swap-rotate">
-        <input on:click={toggleTheme} type="checkbox" />
+        <input class="theme-controller" on:click={toggleTheme} type="checkbox" />
         <div class="swap-on icon moon"><RiMoonClearLine/></div>
         <div class="swap-off icon sun"><RiSunLine/></div>
     </label>

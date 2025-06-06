@@ -1,12 +1,39 @@
 <script lang="ts">
     import { LinkedInUrl, GithubUrl, Email } from '$lib/Constants';
+    import RiGithubFill from '~icons/ri/github-fill';
+    import RiLinkedinBoxFill from '~icons/ri/linkedin-box-fill';
+    import RiMailFill from '~icons/ri/mail-fill';
 </script>
 
 <section class="mb-8">
-    <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-    <ul class="list-disc pl-5">
-        <li><a href={LinkedInUrl} class="link link-primary">LinkedIn</a></li>
-        <li><a href={GithubUrl} class="link link-primary">GitHub</a></li>
-        <li><a href={`mailto:${Email}`} class="link link-primary">Email</a></li>
+    <ul class="flex space-x-4">
+        <li>
+            <a href={LinkedInUrl} class="icon link-primary" target="_blank" rel="noopener noreferrer">
+                <RiLinkedinBoxFill />
+            </a>
+        </li>
+        <li>
+            <a href={GithubUrl} class="icon link-primary" target="_blank" rel="noopener noreferrer">
+                <RiGithubFill />
+            </a>
+        </li>
+        <li>
+            <a href={`mailto:${Email}`} class="icon link-primary">
+                <RiMailFill />
+            </a>
+        </li>
     </ul>
 </section>
+
+<style>
+    .icon {
+        width: 24px; /* Adjust icon size */
+        height: 24px; /* Adjust icon size */
+        color: #6b7280; /* Default icon color */
+        transition: color 0.3s ease;
+    }
+
+    .icon:hover {
+        color: #2563eb; /* Hover color */
+    }
+</style>

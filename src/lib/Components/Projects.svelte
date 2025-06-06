@@ -1,12 +1,20 @@
 <script lang="ts">
     import { Projects } from '$lib/Constants';
+    import ProjectModal from './ProjectModal.svelte';
 </script>
 
 <section class="mb-8">
-    <h2 class="text-2xl font-semibold mb-4">Projects</h2>
-    <ul class="list-disc pl-5">
+    
+    <ul class="flex space-x-4 overflow-x-auto">
         {#each Projects as project}
-            <li><a href={project.url} class="link link-primary">{project.name}</a></li>
+        <ProjectModal
+            image={project.image}
+            title={project.name}
+            description={project.description}
+            url={project.url}
+            github={project.github}
+            label={project.label}
+        />
         {/each}
     </ul>
 </section>

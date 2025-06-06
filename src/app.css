@@ -1,2 +1,4 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+@import "tailwindcss";
+@plugin "daisyui"{
+    themes: retro --default, coffee --prefersdark;
+}

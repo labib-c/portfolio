@@ -8,17 +8,17 @@
 <section class="mb-8">
     <ul class="flex space-x-4">
         <li>
-            <a href={LinkedInUrl} class="icon link-primary" target="_blank" rel="noopener noreferrer">
+            <a href={LinkedInUrl} class="icon link-accent" target="_blank" rel="noopener noreferrer">
                 <RiLinkedinBoxFill />
             </a>
         </li>
         <li>
-            <a href={GithubUrl} class="icon link-primary" target="_blank" rel="noopener noreferrer">
+            <a href={GithubUrl} class="icon link-accent" target="_blank" rel="noopener noreferrer">
                 <RiGithubFill />
             </a>
         </li>
         <li>
-            <a href={`mailto:${Email}`} class="icon link-primary">
+            <a href={`mailto:${Email}`} class="icon link-accent">
                 <RiMailFill />
             </a>
         </li>

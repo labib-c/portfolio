@@ -4,7 +4,7 @@
     import RiMoonClearLine from '~icons/ri/moon-clear-line';
 
     let theme = 'retro';
-
+    let props = $props();
     // Set the initial theme based on localStorage or default to retro
     onMount(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -18,7 +18,7 @@
     }
 </script>
 
-<div>
+<div class={props.class}>
     <label class="swap swap-rotate">
         <input class="theme-controller" on:click={toggleTheme} type="checkbox" />
         <div class="swap-on icon"><RiMoonClearLine/></div>

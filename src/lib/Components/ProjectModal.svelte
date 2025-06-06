@@ -4,7 +4,7 @@
     let props = $props();
 </script>
 
-<div class="card bg-base-100 w-96 shadow-sm">
+<div class="card bg-base-100 w-96 shadow-sm transform transition duration-300 hover:scale-105">
     <figure class="image-container">
         <img src={props.image} alt={props.title} />
     </figure>
@@ -22,14 +22,14 @@
         <div class="card-actions justify-end">
 
             {#if props.url}
-                <div class="badge badge-outline link-primary">
+                <div class="badge badge-outline link-accent">
                     <a href={props.url} target="_blank" rel="noopener noreferrer">
                         <RiExternalLinkFill />
                     </a>
                 </div>
             {/if}
             {#if props.github}
-                <div class="badge badge-outline link-primary">
+                <div class="badge badge-outline link-accent">
                     <a href={props.github} target="_blank" rel="noopener noreferrer">
                         <RiGithubFill />
                     </a>

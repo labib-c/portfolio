@@ -29,11 +29,6 @@
     .icon {
         width: 24px; /* Adjust icon size */
         height: 24px; /* Adjust icon size */
-        color: #6b7280; /* Default icon color */
         transition: color 0.3s ease;
-    }
-
-    .icon:hover {
-        color: #2563eb; /* Hover color */
     }
 </style>

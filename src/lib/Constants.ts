@@ -2,6 +2,7 @@ export const GithubUrl = 'https://github.com/labib-c';
 export const LinkedInUrl = 'https://www.linkedin.com/in/labib-c/';
 export const ResumePath = '/assets/resume.pdf'
 export const Email = 'labibc01@gmail.com';
+export const HeadShot = '/assets/headshot.png';
 export const Projects = [
     { name: 'MSc. Thesis', url: '/assets/thesis.pdf', image: '/assets/queens.png', description: 'A Testing Framework for Evaluating Behavioural Correctness in Robotic Systems Using Clustering as an Oracle', github: "", label:"personal"},
     { name: 'Civic Dashboard', url: 'https://civicdashboard.ca/', image: '/assets/civic.png', description: 'The Civic Dashboard is an open-source platform that aggregates and visualizes civic engagement data, and I am contributing to its development by working on the data pipeline', github: "https://github.com/civic-dashboard", label:"open source"},

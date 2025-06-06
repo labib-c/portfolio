@@ -3,17 +3,16 @@
     import RiSunLine from '~icons/ri/sun-line';
     import RiMoonClearLine from '~icons/ri/moon-clear-line';
 
-    let theme = 'light';
+    let theme = 'retro';
 
-    // Set the initial theme based on localStorage or default to light
+    // Set the initial theme based on localStorage or default to retro
     onMount(() => {
-        theme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', theme);
     });
 
-    // Toggle between light and dark themes
+    // Toggle between retro and coffee themes
     function toggleTheme() {
-        theme = theme === 'light' ? 'dark' : 'light';
+        theme = theme === 'retro' ? 'coffee' : 'retro';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
     }
@@ -22,8 +21,8 @@
 <div>
     <label class="swap swap-rotate">
         <input class="theme-controller" on:click={toggleTheme} type="checkbox" />
-        <div class="swap-on icon moon"><RiMoonClearLine/></div>
-        <div class="swap-off icon sun"><RiSunLine/></div>
+        <div class="swap-on icon"><RiMoonClearLine/></div>
+        <div class="swap-off icon"><RiSunLine/></div>
     </label>
 </div>
 
@@ -33,13 +32,5 @@
         height: 16px; /* Adjusted icon size */
         position: absolute;
         top: 50%;
-    }
-
-    .sun {
-        color: #f4d04e;
-    }
-
-    .moon {
-        color:#5d40e0;
     }
 </style>

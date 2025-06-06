@@ -22,14 +22,14 @@
         <div class="card-actions justify-end">
 
             {#if props.url}
-                <div class="badge badge-outline icon">
+                <div class="badge badge-outline link-primary">
                     <a href={props.url} target="_blank" rel="noopener noreferrer">
                         <RiExternalLinkFill />
                     </a>
                 </div>
             {/if}
             {#if props.github}
-                <div class="badge badge-outline icon">
+                <div class="badge badge-outline link-primary">
                     <a href={props.github} target="_blank" rel="noopener noreferrer">
                         <RiGithubFill />
                     </a>
@@ -50,8 +50,5 @@
         width: 100%; /* Makes the image fill the container width */
         height: 100%; /* Makes the image fill the container height */
         object-fit: cover; /* Ensures the image is cropped to fit the container */
-    }
-    .icon:hover {
-        color: #2563eb; /* Hover color */
     }
 </style>

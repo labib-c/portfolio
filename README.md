@@ -1,38 +1,49 @@
-# sv
+# Labib Chowdhury – Portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Welcome to the source code for [labibc.com](https://labibc.com), the personal portfolio of Labib Chowdhury.
 
-## Creating a project
+This site showcases my background, projects, and interests in software engineering, cybersecurity, infrastructure, and machine learning. It is built with [SvelteKit](https://kit.svelte.dev/) and features a modern, animated, and responsive design.
 
-If you're seeing this, you've probably already done this step. Congrats!
+---
+
+## 🛠️ Development
+
+Clone the repo and install dependencies:
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/labib-c/portfolio.git
+cd portfolio
+npm install
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Start the development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Open [http://localhost:5173](http://localhost:5173) to view the site locally.
 
-To create a production version of your app:
+---
+
+## 🏗️ Building for Production
+
+To create an optimized production build:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```bash
+npm run preview
+```
+
+---
+
+## 🌐 Live Site
+
+Visit the live portfolio at [labibc.com](https://labibc.com)
+
+---

@@ -3,6 +3,7 @@
     import Contact from '$lib/Components/Contact.svelte';
     import Projects from '$lib/Components/Projects.svelte';
     import ThemeToggle from '$lib/Components/ThemeToggle.svelte';
+    import FlickeringGrid from '$lib/Components/FlickeringGrid.svelte';
     import { onMount } from "svelte";
 
     let theme = "caramellatte"; // Default theme
@@ -18,8 +19,18 @@
         </div>
         <ThemeToggle />
     </header>
-    <div class="divider divider-accent"></div>
+   
     <main class="p-8">
+        
+        <FlickeringGrid
+        squareSize={6}
+        gridGap={8}
+        flickerChance={0.9}
+        color="rgba(107,114,128,1)"      
+        maxOpacity={0.1}
+        class="fixed inset-0 z-0 pointer-events-none"
+        />
+        
         <section class="mb-8 text-center bg-base-100 shadow-lg rounded-lg p-6">
             <div class="flex justify-center mb-4">
                 <img src={HeadShot} alt="Labib Chowdhury" class="w-36 h-36 rounded-full border-4 border-accent shadow-md object-cover transform transition duration-300 hover:scale-105" />

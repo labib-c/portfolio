@@ -3,16 +3,16 @@
     import RiSunLine from '~icons/ri/sun-line';
     import RiMoonClearLine from '~icons/ri/moon-clear-line';
 
-    let theme = 'retro';
+    let theme = 'caramellatte';
     let props = $props();
-    // Set the initial theme based on localStorage or default to retro
+    // Set the initial theme based on localStorage or default to caramellatte
     onMount(() => {
         document.documentElement.setAttribute('data-theme', theme);
     });
 
-    // Toggle between retro and coffee themes
+    // Toggle between caramellatte and dracula themes
     function toggleTheme() {
-        theme = theme === 'retro' ? 'coffee' : 'retro';
+        theme = theme === 'caramellatte' ? 'dracula' : 'caramellatte';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
     }

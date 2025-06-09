@@ -5,7 +5,7 @@
     import ThemeToggle from '$lib/Components/ThemeToggle.svelte';
     import { onMount } from "svelte";
 
-    let theme = "retro"; // Default theme
+    let theme = "caramellatte"; // Default theme
     onMount(() => {
         document.documentElement.setAttribute('data-theme', theme);
     });
@@ -18,7 +18,7 @@
         </div>
         <ThemeToggle />
     </header>
-
+    <div class="divider divider-accent"></div>
     <main class="p-8">
         <section class="mb-8 text-center bg-base-100 shadow-lg rounded-lg p-6">
             <div class="flex justify-center mb-4">

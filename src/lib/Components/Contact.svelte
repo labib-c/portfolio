@@ -9,17 +9,17 @@
     <ul class="flex space-x-4">
         <li>
             <a href={LinkedInUrl} class="icon link-accent" target="_blank" rel="noopener noreferrer">
-                <RiLinkedinBoxFill />
+                <RiLinkedinBoxFill width="30px" height="30px"/>
             </a>
         </li>
         <li>
             <a href={GithubUrl} class="icon link-accent" target="_blank" rel="noopener noreferrer">
-                <RiGithubFill />
+                <RiGithubFill width="30px" height="30px"/>
             </a>
         </li>
         <li>
             <a href={`mailto:${Email}`} class="icon link-accent">
-                <RiMailFill />
+                <RiMailFill width="30px" height="30px"/>
             </a>
         </li>
     </ul>

@@ -12,15 +12,21 @@
         <h2 class="card-title">
             {props.title}
             {#if props.label === 'open source'}
-                <div class="badge badge-dash badge-success">Open Source</div>
+                <div class="badge badge-dash badge-success truncate">Open Source</div>
             {:else if props.label === 'personal'}
-                <div class="badge badge-dash badge-info">Personal</div>
+                <div class="badge badge-dash badge-info truncate">Personal</div>
             {/if}
         </h2>
 
         <p>{props.description}</p>
+        {#if props.tags && props.tags.length > 0}
+            <div class="flex flex-wrap gap-2">
+                {#each props.tags as tag}
+                    <span class="badge badge-ghost badge-sm">{tag}</span>
+                {/each}
+            </div>
+        {/if}
         <div class="card-actions justify-end">
-
             {#if props.url}
                 <div class="badge badge-outline link-accent">
                     <a href={props.url} target="_blank" rel="noopener noreferrer">

@@ -14,6 +14,7 @@
             url={project.url}
             github={project.github}
             label={project.label}
+            tags={project.tags}
         />
         {/each}
     </ul>

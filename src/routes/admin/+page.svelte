@@ -6,10 +6,12 @@
   
   let showAddForm = false;
   let editingProject = null;
+  let showResumeForm = false;
   
   function editProject(project) {
     editingProject = { ...project };
     showAddForm = false;
+    showResumeForm = false;
   }
   
   function cancelEdit() {
@@ -18,6 +20,13 @@
   
   function showAdd() {
     showAddForm = true;
+    editingProject = null;
+    showResumeForm = false;
+  }
+
+  function showResume() {
+    showResumeForm = true;
+    showAddForm = false;
     editingProject = null;
   }
 </script>
@@ -52,8 +61,56 @@
     >
       Add New Project
     </button>
+    <button on:click={showResume} class="btn btn-secondary">
+      Update Resume
+    </button>
   </div>
 
+    <!-- Update Resume Form -->
+  {#if showResumeForm}
+    <div class="bg-base-200 p-6 rounded-lg mb-8">
+      <h2 class="text-xl font-semibold mb-4">Update Resume</h2>
+      <div class="mb-4">
+        <span class="block text-sm font-medium mb-2">Current Resume:</span>
+        {#if data.resume}
+          <iframe src={data.resume} class="w-full h-96 border rounded" />
+        {:else}
+          <p class="italic text-base-content/60">No resume uploaded yet.</p>
+        {/if}
+      </div>
+      <form method="POST" action="?/updateResume" enctype="multipart/form-data" use:enhance>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Upload New Resume (PDF)</label>
+          <input
+            type="file"
+            name="resumeFile"
+            accept="application/pdf"
+            class="w-full file-input file-input-bordered"
+          />
+          <p class="text-sm mt-1">This will replace the current resume.</p>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Or Resume Path</label>
+          <input
+            type="text"
+            name="resumePath"
+            placeholder="/assets/resume.pdf"
+            class="w-full input input-bordered"
+          />
+          <p class="text-sm mt-1">Alternative: enter path manually (e.g. after uploading via FTP).</p>
+        </div>
+        <div class="flex gap-2">
+          <button type="submit" class="btn btn-success">
+            Update Resume
+          </button>
+          <button type="button" on:click={() => showResumeForm = false} class="btn">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  {/if}
+  
   <!-- Add Project Form -->
   {#if showAddForm}
     <div class="bg-base-200 p-6 rounded-lg mb-8">

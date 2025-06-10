@@ -5,6 +5,7 @@ import { fail } from '@sveltejs/kit';
 import { mkdir } from 'fs/promises';
 
 const PROJECTS_PATH = join(process.cwd(), 'src/lib/data/projects.json');
+const SITE_PATH = join(process.cwd(), 'src/lib/data/site.json');
 const UPLOADS_DIR = join(process.cwd(), 'static/assets');
 
 // Helper function to save uploaded image
@@ -25,6 +26,20 @@ async function saveImage(imageFile) {
   const buffer = Buffer.from(await imageFile.arrayBuffer());
   writeFileSync(filepath, buffer);
   
+  return `/assets/${filename}`;
+}
+
+// Helper function to save uploaded file (image or resume)
+async function saveFile(file) {
+  if (!file || !file.size) return null;
+  try {
+    await mkdir(UPLOADS_DIR, { recursive: true });
+  } catch (e) {}
+  const timestamp = Date.now();
+  const filename = `${timestamp}-${file.name}`;
+  const filepath = join(UPLOADS_DIR, filename);
+  const buffer = Buffer.from(await file.arrayBuffer());
+  writeFileSync(filepath, buffer);
   return `/assets/${filename}`;
 }
 
@@ -117,6 +132,27 @@ export const actions = {
       return { success: true };
     } catch (error) {
       return fail(500, { error: 'Failed to delete project' });
+    }
+  },
+
+
+  updateResume: async ({ request }) => {
+    const data = await request.formData();
+    const resumeFile = data.get('resumeFile');
+    const resumePath = await saveFile(resumeFile) || data.get('resumePath') || '';
+    if (!resumePath) {
+      return fail(400, { error: 'No resume file or path provided' });
+    }
+    try {
+      let site = {};
+      try {
+        site = JSON.parse(readFileSync(SITE_PATH, 'utf-8'));
+      } catch {}
+      site.resume = resumePath;
+      writeFileSync(SITE_PATH, JSON.stringify(site, null, 2));
+      return { success: true, resume: resumePath };
+    } catch (error) {
+      return fail(500, { error: 'Failed to update resume' });
     }
   }
 };

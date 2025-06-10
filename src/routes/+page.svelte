@@ -6,6 +6,7 @@
     import FlickeringGrid from '$lib/Components/FlickeringGrid.svelte';
     import WordsPullUp from '$lib/Components/WordsPullUp.svelte';
     import { onMount } from "svelte";
+    export let data;
 
     let theme = "caramellatte"; // Default theme
     onMount(() => {
@@ -57,7 +58,7 @@
                 </WordsPullUp>
             </p>
             <button class="btn btn-accent mt-4">
-                <a href={ResumePath} download>Download Resume</a>
+                <a href={data.resume} download>Download Resume</a>
             </button>
         </section>
 

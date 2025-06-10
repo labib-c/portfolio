@@ -10,6 +10,16 @@
   let isAuthenticated = false;
   let user = null;
   let adminEmail = 'labibc01@gmail.com'; 
+  let githubPat = null;
+  let owner = 'labib-c'; // e.g., 'your-username'
+  let repo = 'portfolio';       // e.g., 'your-portfolio-repo'
+
+  // Content variables and their SHA for updates
+  let projectsJsonText = '';
+  let projectsSha = '';
+
+  let siteJsonText = '';
+  let siteSha = '';
 
   export let data;
   export let form;
@@ -40,51 +50,83 @@
     editingProject = null;
   }
 
-  onMount(async () => {
-    if (browser) { // Ensure this only runs in the browser
-        const { createAuth0Client } = await import('@auth0/auth0-spa-js'); // Dynamically import to prevent SSR issues
-        
-        auth0Client = await createAuth0Client({
-            domain: PUBLIC_AUTH0_DOMAIN,
-            clientId: PUBLIC_AUTH0_CLIENT_ID,
-            authorizationParams: {
-                redirect_uri: window.location.origin + '/admin' // Auth0 will redirect here after login
-            }
-        });
+    // Reactive statement to enable/disable button based on auth0Client initialization
+    $: isAuth0ClientLoaded = !!auth0Client;
 
-        // Handle the redirect callback after Auth0 login
-        if (window.location.search.includes('code=') || window.location.search.includes('state=')) {
-            await auth0Client.handleRedirectCallback();
-            // Clean up the URL to remove Auth0 parameters
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
+    onMount(async () => {
+        if (browser) {
+            try {
+                const { createAuth0Client } = await import('@auth0/auth0-spa-js');
 
-        isAuthenticated = await auth0Client.isAuthenticated();
-        if (isAuthenticated) {
-            user = await auth0Client.getUser();
-            // **Authorization Check:** Only allow your specific email
-            if (user && user.email !== adminEmail) {
-                alert('Access Denied: You are not the authorized administrator.');
-                await logout(); // Log out unauthorized users immediately
-                return; // Stop further execution
+                auth0Client = await createAuth0Client({
+                    domain: PUBLIC_AUTH0_DOMAIN,
+                    clientId: PUBLIC_AUTH0_CLIENT_ID,
+                    authorizationParams: {
+                        redirect_uri: window.location.origin + '/admin'
+                    }
+                });
+
+                if (window.location.search.includes('code=') || window.location.search.includes('state=')) {
+                    console.log('Handling Auth0 redirect callback...');
+                    await auth0Client.handleRedirectCallback();
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+
+                isAuthenticated = await auth0Client.isAuthenticated();
+                if (isAuthenticated) {
+                    user = await auth0Client.getUser();
+                    if (user && user.email === adminEmail) {
+                        const idTokenClaims = await auth0Client.getIdTokenClaims();
+                        githubPat = idTokenClaims['https://labibc.com/github_pat']; // **Match namespace**
+                        
+                        if (githubPat) {
+                            // Load existing content once authenticated and PAT is available
+                            await fetchJsonContent('projects');
+                            await fetchJsonContent('site');
+                        } else {
+                            console.error('GitHub PAT not found in ID Token. Check Auth0 Action.');
+                            alert('Authentication error: GitHub PAT missing. Please re-login.');
+                            await logout(); // Log out if PAT is missing
+                        }
+                    } else {
+                        alert('Access Denied: You are not the authorized administrator.');
+                        await logout();
+                    }
+                }
+                console.log('Auth0 Client Initialized. isAuthenticated:', isAuthenticated);
+
+            } catch (error) {
+                console.error('Error initializing Auth0 client or fetching content:', error);
+                alert('An error occurred during setup. Please check console for details.');
             }
         }
-    }
     });
 
     async function login() {
-        if (browser) {
-            await auth0Client.loginWithRedirect();
+        if (browser && auth0Client) {
+            try {
+                await auth0Client.loginWithRedirect();
+            } catch (error) {
+                console.error('Error during login redirect:', error);
+                alert('Login failed. Please try again.');
+            }
+        } else {
+            console.warn('Auth0 client not ready for login.');
         }
     }
 
     async function logout() {
-        if (browser) {
-            await auth0Client.logout({
-                logoutParams: {
-                    returnTo: window.location.origin // Redirect to your site's root or homepage after logout
-                }
-            });
+        if (browser && auth0Client) {
+            try {
+                await auth0Client.logout({
+                    logoutParams: {
+                        returnTo: window.location.origin
+                    }
+                });
+            } catch (error) {
+                console.error('Error during logout:', error);
+                alert('Logout failed.');
+            }
         }
     }
 </script>
@@ -95,6 +137,9 @@
 {#if !isAuthenticated || (user && user.email !== adminEmail)}
     <h2>Please log in to access the admin panel.</h2>
     <button on:click={login}>Login with Auth0</button>
+    {#if isAuthenticated && !githubPat && user && user.email === adminEmail}
+        <p style="color: red;">Error: Could not retrieve GitHub PAT. Check Auth0 Action configuration.</p>
+    {/if}
 {:else}
 
 <div class="container mx-auto p-6 max-w-4xl">

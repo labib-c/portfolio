@@ -7,7 +7,7 @@ import { mkdir } from 'fs/promises';
 const PROJECTS_PATH = join(process.cwd(), 'src/lib/data/projects.json');
 const SITE_PATH = join(process.cwd(), 'src/lib/data/site.json');
 const UPLOADS_DIR = join(process.cwd(), 'static/assets');
-
+// import { ADMIN_PASS, ADMIN_USER } from '$env/static/private';
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'yourpassword';
 

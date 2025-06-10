@@ -46,6 +46,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
+		"@auth0/auth0-spa-js": "^2.2.0",
 		"clsx": "^2.1.1",
 		"svelte-motion": "^0.12.2",
 		"tailwind-merge": "^3.3.0"

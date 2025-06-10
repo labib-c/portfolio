@@ -1,6 +1,16 @@
 <script>
   import { enhance } from '$app/forms';
   import ThemeToggle from '$lib/Components/ThemeToggle.svelte';
+  import { onMount } from 'svelte';
+  import { browser } from '$app/environment';
+  import { PUBLIC_AUTH0_DOMAIN, PUBLIC_AUTH0_CLIENT_ID } from '$env/static/public';
+  import { goto } from '$app/navigation';
+
+  let auth0Client;
+  let isAuthenticated = false;
+  let user = null;
+  let adminEmail = 'labibc01@gmail.com'; 
+
   export let data;
   export let form;
   
@@ -29,20 +39,62 @@
     showAddForm = false;
     editingProject = null;
   }
+
+  onMount(async () => {
+    if (browser) { // Ensure this only runs in the browser
+        const { createAuth0Client } = await import('@auth0/auth0-spa-js'); // Dynamically import to prevent SSR issues
+        
+        auth0Client = await createAuth0Client({
+            domain: PUBLIC_AUTH0_DOMAIN,
+            clientId: PUBLIC_AUTH0_CLIENT_ID,
+            authorizationParams: {
+                redirect_uri: window.location.origin + '/admin' // Auth0 will redirect here after login
+            }
+        });
+
+        // Handle the redirect callback after Auth0 login
+        if (window.location.search.includes('code=') || window.location.search.includes('state=')) {
+            await auth0Client.handleRedirectCallback();
+            // Clean up the URL to remove Auth0 parameters
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        isAuthenticated = await auth0Client.isAuthenticated();
+        if (isAuthenticated) {
+            user = await auth0Client.getUser();
+            // **Authorization Check:** Only allow your specific email
+            if (user && user.email !== adminEmail) {
+                alert('Access Denied: You are not the authorized administrator.');
+                await logout(); // Log out unauthorized users immediately
+                return; // Stop further execution
+            }
+        }
+    }
+    });
+
+    async function login() {
+        if (browser) {
+            await auth0Client.loginWithRedirect();
+        }
+    }
+
+    async function logout() {
+        if (browser) {
+            await auth0Client.logout({
+                logoutParams: {
+                    returnTo: window.location.origin // Redirect to your site's root or homepage after logout
+                }
+            });
+        }
+    }
 </script>
 <svelte:head>
   <title>Portfolio Admin</title>
 </svelte:head>
 
-{#if data.needsLogin}
-  <form method="POST" use:enhance action="?/login" class="max-w-xs mx-auto mt-16">
-    <input name="username" placeholder="Username" class="input input-bordered w-full mb-2" />
-    <input name="password" type="password" placeholder="Password" class="input input-bordered w-full mb-2" />
-    <button class="btn btn-primary w-full">Login</button>
-    {#if data.error}
-      <div class="text-error mt-2">{data.error}</div>
-    {/if}
-  </form>
+{#if !isAuthenticated || (user && user.email !== adminEmail)}
+    <h2>Please log in to access the admin panel.</h2>
+    <button on:click={login}>Login with Auth0</button>
 {:else}
 
 <div class="container mx-auto p-6 max-w-4xl">

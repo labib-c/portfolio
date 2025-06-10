@@ -1,12 +1,15 @@
 // src/routes/admin/+page.server.js
 import { writeFileSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { mkdir } from 'fs/promises';
 
 const PROJECTS_PATH = join(process.cwd(), 'src/lib/data/projects.json');
 const SITE_PATH = join(process.cwd(), 'src/lib/data/site.json');
 const UPLOADS_DIR = join(process.cwd(), 'static/assets');
+
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'yourpassword';
 
 // Helper function to save uploaded image
 async function saveImage(imageFile) {
@@ -43,21 +46,43 @@ async function saveFile(file) {
   return `/assets/${filename}`;
 }
 
-export async function load() {
+export async function load({ cookies }) {
+  if (cookies.get('admin_auth') !== ADMIN_PASS) {
+    return { needsLogin: true };
+  }
   try {
     const projectsData = readFileSync(PROJECTS_PATH, 'utf-8');
     const projects = JSON.parse(projectsData);
+
+    // Also load resume if needed
+    let resume = '';
+    try {
+      const siteData = readFileSync(SITE_PATH, 'utf-8');
+      resume = JSON.parse(siteData).resume || '';
+    } catch {}
+
     return {
-      projects
+      projects,
+      resume
     };
-  } catch (error) {
+  } catch (err) {
     return {
-      projects: []
+      projects: [],
+      resume: ''
     };
   }
 }
-
 export const actions = {
+  login: async ({ request, cookies }) => {
+    const data = await request.formData();
+    const user = data.get('username');
+    const pass = data.get('password');
+    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      cookies.set('admin_auth', ADMIN_PASS, { path: '/admin', httpOnly: true });
+      throw redirect(303, '/admin');
+    }
+    return fail(401, { error: 'Invalid credentials' });
+  },
   addProject: async ({ request }) => {
     const data = await request.formData();
     const imageFile = data.get('imageFile');

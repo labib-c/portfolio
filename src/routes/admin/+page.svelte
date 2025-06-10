@@ -30,10 +30,20 @@
     editingProject = null;
   }
 </script>
-
 <svelte:head>
   <title>Portfolio Admin</title>
 </svelte:head>
+
+{#if data.needsLogin}
+  <form method="POST" use:enhance action="?/login" class="max-w-xs mx-auto mt-16">
+    <input name="username" placeholder="Username" class="input input-bordered w-full mb-2" />
+    <input name="password" type="password" placeholder="Password" class="input input-bordered w-full mb-2" />
+    <button class="btn btn-primary w-full">Login</button>
+    {#if data.error}
+      <div class="text-error mt-2">{data.error}</div>
+    {/if}
+  </form>
+{:else}
 
 <div class="container mx-auto p-6 max-w-4xl">
     <div class="flex justify-between items-center mb-6">
@@ -405,7 +415,7 @@
     {/if}
   </div>
 </div>
-
+{/if}
 <style>
   .container {
     font-family: system-ui, -apple-system, sans-serif;

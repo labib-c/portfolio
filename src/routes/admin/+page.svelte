@@ -27,9 +27,10 @@
 </svelte:head>
 
 <div class="container mx-auto p-6 max-w-4xl">
-    <div class="flex">
+    <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold mb-8">Portfolio Admin</h1>
         <ThemeToggle class="mb-6" />
+        <a href="/" class="btn btn-outline btn-sm">Back to Portfolio</a>
     </div>
   
   {#if form?.success}

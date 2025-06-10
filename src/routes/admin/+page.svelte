@@ -95,8 +95,8 @@
               class="w-full input input-bordered"
             >
               <option value="">Select label</option>
-              <option value="Personal">Personal</option>
-              <option value="Open Source">Open Source</option>
+              <option value="personal">Personal</option>
+              <option value="open source">Open Source</option>
             </select>
           </div>
           
@@ -210,8 +210,8 @@
               class="w-full input input-bordered"
             >
               <option value="">Select label</option>
-              <option value="Personal">Personal</option>
-              <option value="Open Source">Open Source</option>
+              <option value="personal">Personal</option>
+              <option value="open source">Open Source</option>
             </select>
           </div>
           

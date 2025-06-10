@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { Projects } from '$lib/Constants';
+    import projects from '$lib/data/projects.json'
     import ProjectModal from './ProjectModal.svelte';
 </script>
 
 <section class="mb-8">
     
     <ul class="flex space-x-4 overflow-x-auto">
-        {#each Projects as project}
+        {#each projects as project}
         <ProjectModal
             image={project.image}
             title={project.name}
